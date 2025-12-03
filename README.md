@@ -2,7 +2,7 @@
 
 > A familiar and humble "spec" reporter for Playwright
 
-A Playwright test reporter that outputs results in a clean, hierarchical format similar to Mocha's classic "spec" reporter. If you've used Mocha, you'll feel right at home.
+A Playwright console test reporter which outputs test results in a hierarchical format similar to Mocha's or node:test's `spec` reporter.
 
 ## Install
 
