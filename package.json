@@ -28,6 +28,8 @@
     "dist"
   ],
   "keywords": [
+    "console",
+    "terminal",
     "playwright",
     "reporter",
     "spec",
