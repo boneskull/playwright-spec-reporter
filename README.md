@@ -1,63 +1,73 @@
-# boneskull-template
+# playwright-spec-reporter
 
-> JUST THE WAY I LIKE IT
+> A familiar and humble "spec" reporter for Playwright
 
-This is my template for new Node.js projects. It is the best one.
+A Playwright test reporter that outputs results in a clean, hierarchical format similar to Mocha's classic "spec" reporter. If you've used Mocha, you'll feel right at home.
 
 ## Install
 
 ```shell
-npm install PACKAGENAME
+npm install playwright-spec-reporter
 ```
 
 ## Usage
 
-Use as a GitHub template.
+Configure the reporter in your `playwright.config.ts`:
 
-## Tooling
+```typescript
+import { defineConfig } from '@playwright/test';
 
-This template includes:
-
-- **ESLint v9+** with flat config and TypeScript support
-- **Prettier** with automatic formatting
-- **TypeScript** with strict checking
-- **node:test** - Built-in Node.js test runner
-- **bupkis** - Modern assertion library
-- **Husky** - Git hooks for quality checks
-- **lint-staged** - Run linters on staged files
-- **commitlint** - Conventional commit enforcement
-- **cspell** - Spell checking
-- **markdownlint** - Markdown linting
-- **knip** - Find unused dependencies
-- **Renovate** - Automated dependency updates
-- **zshy** - Dual-module TS builds
-
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Build
-npm run build
-
-# Run tests
-npm test
-
-# Run linters
-npm run lint
-
-# Auto-fix issues
-npm run fix
-
-# Watch mode for tests
-npm run test:watch
+export default defineConfig({
+  reporter: [['playwright-spec-reporter']],
+});
 ```
 
-## Notes
+Or use it alongside other reporters:
 
-Bacon ribeye ham hock kielbasa landjaeger drumstick pork chop andouille.
+```typescript
+export default defineConfig({
+  reporter: [['playwright-spec-reporter'], ['html', { open: 'never' }]],
+});
+```
+
+## Output
+
+The reporter produces clean, colored output with:
+
+- Hierarchical suite names with indentation
+- Green checkmarks for passing tests
+- Red numbered failures for failing tests
+- Yellow dashes for skipped tests
+- Duration for each test and total run
+- Detailed failure information with stack traces
+
+Example output:
+
+```text
+  Login Page
+    ✓ should display login form (42ms)
+    ✓ should validate email format (38ms)
+    Authentication
+      ✓ should login with valid credentials (156ms)
+      1) should reject invalid password
+      - should handle forgot password (skipped)
+
+  2 passing, 1 failing, 1 skipped (512ms)
+
+  1) Login Page Authentication should reject invalid password:
+     Expected status to be 401
+     at Context.<anonymous> (tests/login.spec.ts:45:5)
+     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+```
+
+## API
+
+The package exports:
+
+- **`default`** - The `SpecReporter` class
+- **`colors`** - ANSI color codes used for output
+- **`symbols`** - Unicode symbols (✓, ✗, -)
 
 ## License
 
-Copyright © 2019 Christopher Hiller. Licensed BlueOak-1.0.0
+Copyright © 2025 Christopher "boneskull" Hiller. Licensed BlueOak-1.0.0.
