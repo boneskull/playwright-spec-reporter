@@ -64,7 +64,7 @@
     "@commitlint/cli": "20.5.3",
     "@commitlint/config-conventional": "20.5.3",
     "@eslint/js": "9.39.5",
-    "@playwright/test": "1.57.0",
+    "@playwright/test": "1.62.1",
     "@stylistic/eslint-plugin": "5.10.0",
     "@types/node": "24.10.4",
     "bupkis": "0.14.0",
